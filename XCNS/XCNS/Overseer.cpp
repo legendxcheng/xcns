@@ -1,5 +1,5 @@
 #include "Overseer.h"
-
+#include "GlobalEvent.h"
 namespace XCNS
 {
 
@@ -21,9 +21,9 @@ Overseer::Overseer(void)
 	std::priority_queue<Event*, std::vector<Event*>, cmpEvent> qempty;
 	std::swap(m_evq, qempty);
 
-
 	// Insert 2 simulation event, the simulation start and simulation end.
-
+	m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART));
+	m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSEND));
 }
 
 
