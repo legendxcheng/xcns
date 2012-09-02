@@ -22,6 +22,7 @@ namespace XCNS
 	class Overseer
 	{
 	public:
+		void initialize();
 		friend class ConfigReader;
 		unsigned int getTime();
 		static Overseer* getInstance();
@@ -29,6 +30,7 @@ namespace XCNS
 		static bool canReceiveSignal( double distance, double frequency, double sendingPower, double threshold );
 		~Overseer(void);
 	private:
+		void handleEvent(Event* evt);
 		static Overseer* m_instance;
 		Overseer(void);
 	private:

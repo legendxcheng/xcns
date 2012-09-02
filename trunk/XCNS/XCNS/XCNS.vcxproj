@@ -63,8 +63,10 @@
     <ClCompile Include="ConfigReader.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GlobalEvent.cpp" />
+    <ClCompile Include="HeadNode.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MessageEvent.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Overseer.cpp" />
     <ClCompile Include="tinystr.cpp" />
@@ -76,7 +78,9 @@
     <ClInclude Include="ConfigReader.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GlobalEvent.h" />
+    <ClInclude Include="HeadNode.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MessageEvent.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Overseer.h" />
     <ClInclude Include="tinystr.h" />

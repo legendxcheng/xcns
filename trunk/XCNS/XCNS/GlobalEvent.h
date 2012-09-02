@@ -13,4 +13,5 @@ public:
 	GlobalEvent(void);
 	~GlobalEvent(void);
 };
+
 }

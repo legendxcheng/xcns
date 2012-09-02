@@ -17,10 +17,21 @@ Event::~Event(void)
 {
 }
 
+void Event::setTimeStamp(unsigned long tstp)
+{
+	m_timeStamp = tstp;
+}
+
 unsigned int Event::getTimeStamp()
 {
 	return m_timeStamp;
 }
 
+
+
+int Event::getType()
+{
+
 }
 
+}
