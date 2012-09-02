@@ -2,6 +2,7 @@
 #include <queue>
 #include <vector>
 #include "Event.h"
+class ConfigReader;
 
 namespace XCNS
 {
@@ -21,6 +22,7 @@ namespace XCNS
 	class Overseer
 	{
 	public:
+		friend class ConfigReader;
 		unsigned int getTime();
 		static Overseer* getInstance();
 		void simulate();
