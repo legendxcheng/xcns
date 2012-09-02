@@ -17,7 +17,7 @@ namespace XCNS
 		unsigned int m_type;
 	public: // Constant.
 		static const int EVENT_GLOBAL_SIMSTART = 0X1000;
-		static const int EVENT_GLOBAL_SIMSEND = 0x10001;
+		static const int EVENT_GLOBAL_SIMEND = 0x10001;
 		static const int EVENT_MESSAGE_ACK = 0x10002;
 		static const int EVENT_MESSAGE_LS = 0x10003;
 		static const int EVENT_MESSAGE_IML = 0x10004;

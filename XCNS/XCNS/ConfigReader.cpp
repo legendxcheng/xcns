@@ -47,13 +47,16 @@ void ConfigReader::ReadConfig()
 	ovsr->m_carriageNum = atoi(carriageNum->FirstChild()->Value());
 
 	TiXmlElement *simulatedPeriod = carriageNum->NextSiblingElement();
-	ovsr->m_simulatePeriod = strtoul(simulatedPeriod->FirstChild()->Value(), NULL, 10);
+	ovsr->m_simulationPeriod = strtoul(simulatedPeriod->FirstChild()->Value(), NULL, 10);
 
 	TiXmlElement *nodeSleepTime = simulatedPeriod->NextSiblingElement();
 	ovsr->m_nodeSleepTime = strtoul(nodeSleepTime->FirstChild()->Value(), NULL, 10);
 
 	TiXmlElement *logVerbosity = nodeSleepTime->NextSiblingElement();
 	ovsr->m_logVerbosity = atoi(logVerbosity->FirstChild()->Value());
+
+	Logger* logger = Logger::getInstance();
+	logger->setVerbosity(ovsr->m_logVerbosity);
 }
 
 }
