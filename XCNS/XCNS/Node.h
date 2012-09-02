@@ -17,7 +17,7 @@ private:
 	int m_pos; // Position in a line.
 	int m_groupGUID;
 	int m_id; //
-
+	int m_state;
 private:
 	bool m_busy; // Boolean for whether the node is busy working.
 
