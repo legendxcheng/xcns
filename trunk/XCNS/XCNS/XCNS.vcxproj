@@ -69,6 +69,7 @@
     <ClCompile Include="MessageEvent.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Overseer.cpp" />
+    <ClCompile Include="Packet.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="MessageEvent.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Overseer.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
   </ItemGroup>
