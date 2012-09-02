@@ -22,8 +22,8 @@ Overseer::Overseer(void)
 	std::swap(m_evq, qempty);
 
 	// Insert 2 simulation event, the simulation start and simulation end.
-	m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART));
-	m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSEND));
+	//m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART));
+	//m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSEND));
 }
 
 
