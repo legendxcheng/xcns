@@ -27,17 +27,33 @@ void ConfigReader::ReadConfig()
 	TiXmlDocument *myDocument = new TiXmlDocument("config.xml");
 	myDocument->LoadFile();
 	TiXmlElement *RootElement = myDocument->RootElement();
-	Logger* logger = Logger::getInstance();
+	
 	TiXmlElement *carriageLength = RootElement->FirstChildElement();
-	TiXmlElement *nodePower = carriageLength->NextSiblingElement();
-	TiXmlElement *recvThreshold = nodePower->NextSiblingElement();
-	TiXmlElement *nodeDelayOfHandlingMessage = recvThreshold->NextSiblingElement();
-	TiXmlElement *groupGUID = nodeDelayOfHandlingMessage->NextSiblingElement();
-	TiXmlElement *carriageNum = groupGUID->NextSiblingElement();
-	TiXmlElement *simulatedPeriod = carriageNum->NextSiblingElement();
-	TiXmlElement *nodeSleepTime = simulatedPeriod->NextSiblingElement();
-	TiXmlElement *logVerbosity = nodeSleepTime->NextSiblingElement();
+	ovsr->m_carriageLength = atoi(carriageLength->FirstChild()->Value());
 
+	TiXmlElement *nodePower = carriageLength->NextSiblingElement();
+	ovsr->m_nodePower = atoi(nodePower->FirstChild()->Value());
+
+	TiXmlElement *recvThreshold = nodePower->NextSiblingElement();
+	ovsr->m_recvThreshold = atoi(recvThreshold->FirstChild()->Value());
+
+	TiXmlElement *nodeDelayOfHandlingMessage = recvThreshold->NextSiblingElement();
+	ovsr->m_nodeDelayOfHandlingMessage = atoi(nodeDelayOfHandlingMessage->FirstChild()->Value());
+
+	TiXmlElement *groupGUID = nodeDelayOfHandlingMessage->NextSiblingElement();
+	ovsr->m_groupGUID = atoi(groupGUID->FirstChild()->Value());
+
+	TiXmlElement *carriageNum = groupGUID->NextSiblingElement();
+	ovsr->m_carriageNum = atoi(carriageNum->FirstChild()->Value());
+
+	TiXmlElement *simulatedPeriod = carriageNum->NextSiblingElement();
+	ovsr->m_simulatePeriod = strtoul(simulatedPeriod->FirstChild()->Value(), NULL, 10);
+
+	TiXmlElement *nodeSleepTime = simulatedPeriod->NextSiblingElement();
+	ovsr->m_nodeSleepTime = strtoul(nodeSleepTime->FirstChild()->Value(), NULL, 10);
+
+	TiXmlElement *logVerbosity = nodeSleepTime->NextSiblingElement();
+	ovsr->m_logVerbosity = atoi(logVerbosity->FirstChild()->Value());
 }
 
 }
