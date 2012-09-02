@@ -21,11 +21,15 @@ namespace XCNS
 	class Overseer
 	{
 	public:
-		Overseer(void);
+		unsigned int getTime();
+		static Overseer* getInstance();
 		~Overseer(void);
-
+	private:
+		static Overseer* m_instance;
+		Overseer(void);
 	private:
 		std::priority_queue<Event*, std::vector<Event*>, cmpEvent> m_evq;// event queue;
+		unsigned int m_time;
 	};
 }
 
