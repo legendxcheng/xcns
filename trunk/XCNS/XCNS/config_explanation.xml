@@ -1,0 +1,36 @@
+<config>
+	<carriageLength>
+		<!-- in meter -->
+		25
+	</carriageLength>
+	<nodePower>
+		<!-- in mW -->
+		15
+	</nodePower>
+	<recvThreshold>
+		<!-- in W -->
+		5
+	</recvThreshold>
+	<nodeDelayOfHandlingMessage>
+		<!-- in 0.1ms -->
+		100
+	</nodeDelayOfHandlingMessage>
+	<groupGUID>
+		19900604
+	</groupGUID>
+	<carriageNum>
+		100
+	</carriageNum>
+	<simulatePeriod>
+		<!-- in 0.1ms -->
+		3600000000
+	</simulatePeriod>
+	<nodeSleepTime>
+		<!-- in 0.1ms -->
+		36000000
+	</nodeSleepTime>
+	<logVerbosity>
+		<!-- from 1 ~ 5 -->
+		3
+	</logVerbosity>
+</config>
