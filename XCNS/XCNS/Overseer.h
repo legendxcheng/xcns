@@ -34,6 +34,18 @@ namespace XCNS
 	private:
 		std::priority_queue<Event*, std::vector<Event*>, cmpEvent> m_evq;// event queue;
 		unsigned int m_time;
+
+	// global variable
+	private:
+		int m_carriageLength; // In meter
+		int m_nodePower; // In mW
+		int m_recvThreshold; // In mW
+		int m_nodeDelayOfHandlingMessage;// in 0.1ms
+		int m_groupGUID;// 
+		int m_carriageNum;// number of carriage
+		unsigned long m_simulatePeriod; // in 0.1ms
+		unsigned long m_nodeSleepTime; // in 0.1ms
+		int m_logVerbosity; // 1 ~ 5
 	};
 }
 
