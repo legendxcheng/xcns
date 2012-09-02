@@ -37,4 +37,16 @@ unsigned int Overseer::getTime()
 	return m_time;
 }
 
+//distance表示传输距离，单位为km；frequency表示节点工作频率，单位为MHz。sendingPower表示发送功率，单位为mW。
+bool Overseer::canReceiveSignal( double distance, double frequency, double sendingPower, double threshold )
+{
+	double receivingPower = 0;
+	receivingPower = sendingPower / ( 1753.88 * distance * distance * frequency * frequency );
+	if (receivingPower < threshold)
+	{
+		return false;
+	}
+	return true;
+}
+
 }
