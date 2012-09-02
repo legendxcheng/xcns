@@ -26,6 +26,7 @@ namespace XCNS
 		unsigned int getTime();
 		static Overseer* getInstance();
 		void simulate();
+		static bool canReceiveSignal( double distance, double frequency, double sendingPower, double threshold );
 		~Overseer(void);
 	private:
 		static Overseer* m_instance;
