@@ -23,6 +23,7 @@ namespace XCNS
 	public:
 		unsigned int getTime();
 		static Overseer* getInstance();
+		void simulate();
 		~Overseer(void);
 	private:
 		static Overseer* m_instance;
