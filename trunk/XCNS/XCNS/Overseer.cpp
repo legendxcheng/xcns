@@ -17,7 +17,15 @@ Overseer* Overseer::getInstance()
 Overseer::Overseer(void)
 {
 	m_time = 0;
+	// clear the evq
+	std::priority_queue<Event*, std::vector<Event*>, cmpEvent> qempty;
+	std::swap(m_evq, qempty);
+
+
+	// Insert 2 simulation event, the simulation start and simulation end.
+
 }
+
 
 
 Overseer::~Overseer(void)
