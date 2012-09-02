@@ -22,8 +22,9 @@ namespace XCNS
 		{
 			std::string polishedStr;
 			char ss[300];
+			memset(ss, 0, sizeof(char) * 300);
 			unsigned int curTime = Overseer::getInstance()->getTime();
-			sscanf(ss, "%d.%dms  %s\n", curTime / 10, curTime %10, logStr.c_str());
+			sprintf(ss, "%d\.%dms  %s\n", curTime / 10, curTime %10, logStr.c_str());
 			fprintf(m_logFile, ss);
 		}
 		
