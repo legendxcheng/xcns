@@ -9,6 +9,8 @@ class ConfigReader
 public:
 	ConfigReader(void);
 	~ConfigReader(void);
+
+	static void ReadConfig();
 };
 }
 
