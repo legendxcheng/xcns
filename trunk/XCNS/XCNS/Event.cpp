@@ -31,7 +31,7 @@ unsigned int Event::getTimeStamp()
 
 int Event::getType()
 {
-
+	return m_type;
 }
 
 }

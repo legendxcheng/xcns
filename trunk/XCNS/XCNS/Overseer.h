@@ -45,7 +45,7 @@ namespace XCNS
 		int m_nodeDelayOfHandlingMessage;// in 0.1ms
 		int m_groupGUID;// 
 		int m_carriageNum;// number of carriage
-		unsigned long m_simulatePeriod; // in 0.1ms
+		unsigned long m_simulationPeriod; // in 0.1ms
 		unsigned long m_nodeSleepTime; // in 0.1ms
 		int m_logVerbosity; // 1 ~ 5
 	};

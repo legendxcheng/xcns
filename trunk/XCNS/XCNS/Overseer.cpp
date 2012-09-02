@@ -1,5 +1,7 @@
 #include "Overseer.h"
 #include "GlobalEvent.h"
+#include "Logger.h"
+#include "ConfigReader.h"
 namespace XCNS
 {
 
@@ -25,11 +27,14 @@ Overseer::Overseer(void)
 
 void Overseer::initialize()
 {
+	// read xml
+	ConfigReader::ReadConfig();
+
 	GlobalEvent* ge = new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART);
 	ge->setTimeStamp(0);
 	m_evq.push(ge);
 	ge = new GlobalEvent(Event::EVENT_GLOBAL_SIMEND);
-	ge->setTimeStamp(m_simulatePeriod);
+	ge->setTimeStamp(m_simulationPeriod);
 	m_evq.push(ge);
 }
 
@@ -56,14 +61,16 @@ bool Overseer::canReceiveSignal( double distance, double frequency, double sendi
 
 
 
-void handleEvent(Event* evt)
+void Overseer::handleEvent(Event* evt)
 {
+	Logger* logger = Logger::getInstance();
 	switch(evt->getType())
 	{
 	case Event::EVENT_GLOBAL_SIMEND:
-
+		logger->addLog(1, "Simulation starts.");
 		break;
 	case Event::EVENT_GLOBAL_SIMSTART:
+		logger->addLog(1, "Simulation ends.");
 		break;
 	case Event::EVENT_MESSAGE_ACK:
 		break;

@@ -11,4 +11,5 @@ void main()
 	// XML test
 	XCNS::Overseer* ovsr = XCNS::Overseer::getInstance();
 	ovsr->initialize();
+	ovsr->simulate();
 }
