@@ -27,7 +27,6 @@ namespace XCNS
 			sprintf(ss, "%d\.%dms  %s\n", curTime / 10, curTime %10, logStr.c_str());
 			fprintf(m_logFile, ss);
 		}
-		
 	}
 
 	void Logger::setVerbosity(int verbo)
