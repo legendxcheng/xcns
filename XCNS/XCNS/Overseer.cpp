@@ -21,12 +21,17 @@ Overseer::Overseer(void)
 	std::priority_queue<Event*, std::vector<Event*>, cmpEvent> qempty;
 	std::swap(m_evq, qempty);
 
-	// Insert 2 simulation event, the simulation start and simulation end.
-	//m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART));
-	//m_evq.push(new GlobalEvent(Event::EVENT_GLOBAL_SIMSEND));
 }
 
-
+void Overseer::initialize()
+{
+	GlobalEvent* ge = new GlobalEvent(Event::EVENT_GLOBAL_SIMSTART);
+	ge->setTimeStamp(0);
+	m_evq.push(ge);
+	ge = new GlobalEvent(Event::EVENT_GLOBAL_SIMEND);
+	ge->setTimeStamp(m_simulatePeriod);
+	m_evq.push(ge);
+}
 
 Overseer::~Overseer(void)
 {
@@ -47,6 +52,42 @@ bool Overseer::canReceiveSignal( double distance, double frequency, double sendi
 		return false;
 	}
 	return true;
+}
+
+
+
+void handleEvent(Event* evt)
+{
+	switch(evt->getType())
+	{
+	case Event::EVENT_GLOBAL_SIMEND:
+
+		break;
+	case Event::EVENT_GLOBAL_SIMSTART:
+		break;
+	case Event::EVENT_MESSAGE_ACK:
+		break;
+	case Event::EVENT_MESSAGE_IML:
+		break;
+	case Event::EVENT_MESSAGE_LS:
+		break;
+	}
+}
+
+/*
+	Main function to simulate the network.
+	There is a loop here.	
+*/
+void Overseer::simulate()
+{
+	while (!m_evq.empty())
+	{
+		Event* evt = m_evq.top();
+		m_time = evt->getTimeStamp();
+
+		handleEvent(evt);
+		m_evq.pop();
+	}
 }
 
 }
