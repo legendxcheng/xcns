@@ -1,10 +1,11 @@
 #pragma once
 #include "Node.h"
+
 namespace XCNS
 {
 
 
-	class HeadNode
+	class HeadNode : public Node
 	{
 	public:
 		HeadNode(void);
