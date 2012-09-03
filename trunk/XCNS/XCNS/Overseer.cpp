@@ -72,11 +72,28 @@ void Overseer::handleEvent(Event* evt)
 	case Event::EVENT_GLOBAL_SIMSTART:
 		logger->addLog(1, "Simulation ends.");
 		break;
+	case Event::EVENT_NODE_BUSY:
+		nodeBusyHandler(evt);
+		
+		break;
+	case Event::EVENT_NODE_FSM:
+		nodeFSMHandler(evt);
+
+		break;
+	case Event::EVENT_NODE_SLEEP:
+		nodeSleepHandler(evt);
+		break;
+	case Event::EVENT_NODE_WAKEUP:
+		nodeWakeUpHandler(evt);
+		break;
 	case Event::EVENT_MESSAGE_ACK:
+		ACKMsgHandler(evt);
 		break;
 	case Event::EVENT_MESSAGE_IML:
+		IMLMsgHandler(evt);
 		break;
 	case Event::EVENT_MESSAGE_LS:
+		LSMsgHandler(evt);
 		break;
 	}
 }
@@ -95,6 +112,35 @@ void Overseer::simulate()
 		handleEvent(evt);
 		m_evq.pop();
 	}
+}
+
+void Overseer::nodeWakeUpHandler(Event* evt)
+{
+
+}
+void Overseer::nodeSleepHandler(Event* evt)
+{
+
+}
+void Overseer::nodeFSMHandler(Event* evt)
+{
+
+}
+void Overseer::nodeBusyHandler(Event* evt)
+{
+
+}
+void Overseer::ACKMsgHandler(Event* evt)
+{
+
+}
+void Overseer::LSMsgHandler(Event* evt)
+{
+
+}
+void Overseer::IMLMsgHandler(Event* evt)
+{
+
 }
 
 }
