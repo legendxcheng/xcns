@@ -21,6 +21,11 @@ NodeEvent::NodeEvent(unsigned int atype, int a_nodeID, bool a_busy)
 
 }
 
+std::string NodeEvent::getToState()
+{
+	return m_toState;
+}
+
 NodeEvent::NodeEvent(unsigned int a_type, int a_nodeID, std::string fromS, std::string toS)
 {
 	m_nodeID = a_nodeID;
@@ -29,4 +34,8 @@ NodeEvent::NodeEvent(unsigned int a_type, int a_nodeID, std::string fromS, std::
 	m_toState = toS;
 }	
 
+int NodeEvent::getNodeID()
+{
+	return m_nodeID;
+}
 }

@@ -2,6 +2,10 @@
 #include "GlobalEvent.h"
 #include "Logger.h"
 #include "ConfigReader.h"
+#include "NodeEvent.h"
+#include "MessageEvent.h"
+#include "NodeMgr.h"
+
 namespace XCNS
 {
 
@@ -116,15 +120,39 @@ void Overseer::simulate()
 
 void Overseer::nodeWakeUpHandler(Event* evt)
 {
+	NodeEvent* nevt = (NodeEvent*)evt;
+	
+	// Add log.
+	char logStr[300];
+	sprintf(logStr, "node %d wakes up.", nevt->getNodeID());
+
+	// Logic.
+	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->wakeUp();
+
 
 }
 void Overseer::nodeSleepHandler(Event* evt)
 {
+	NodeEvent* nevt = (NodeEvent*)evt;
+
+	// Add log.
+	char logStr[300];
+	sprintf(logStr, "node %d sleeps.", nevt->getNodeID());
+
+	// Logic.
+	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->wakeUp();
 
 }
 void Overseer::nodeFSMHandler(Event* evt)
 {
+	NodeEvent* nevt = (NodeEvent*)evt;
 
+	// Add log.
+	char logStr[300];
+	sprintf(logStr, "node %d sleeps.", nevt->getNodeID());
+
+	// Logic.
+	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->transit(nevt->getToState());
 }
 void Overseer::nodeBusyHandler(Event* evt)
 {
@@ -132,14 +160,36 @@ void Overseer::nodeBusyHandler(Event* evt)
 }
 void Overseer::ACKMsgHandler(Event* evt)
 {
+	MessageEvent* mevt = (MessageEvent*)evt;
+	// Add logs.
+	char logStr[300];
+	sprintf(logStr, "node %d broadcasts ACK message.", mevt->getNodeID());
+
+	// Logic
+	// TODO: find nodes which can recv the message, call thier recvPacket function
+
 
 }
 void Overseer::LSMsgHandler(Event* evt)
 {
+	MessageEvent* mevt = (MessageEvent*)evt;
+	// Add logs.
+	char logStr[300];
+	sprintf(logStr, "node %d broadcasts LS message.", mevt->getNodeID());
+
+	// Logic
+	// TODO: find nodes which can recv the message, call thier recvPacket function
 
 }
 void Overseer::IMLMsgHandler(Event* evt)
 {
+	MessageEvent* mevt = (MessageEvent*)evt;
+	// Add logs.
+	char logStr[300];
+	sprintf(logStr, "node %d broadcasts IML message.", mevt->getNodeID());
+
+	// Logic
+	// TODO: find nodes which can recv the message, call thier recvPacket function
 
 }
 

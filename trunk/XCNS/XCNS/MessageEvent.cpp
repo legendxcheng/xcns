@@ -17,4 +17,9 @@ namespace XCNS
 	{
 	}
 
+	int MessageEvent::getNodeID()
+	{
+		return m_nodeID;
+	}
+
 }
