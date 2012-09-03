@@ -37,7 +37,7 @@ namespace XCNS
 		std::priority_queue<Event*, std::vector<Event*>, cmpEvent> m_evq;// event queue;
 		unsigned int m_time;
 
-	// global variable
+	// Global variable
 	private:
 		int m_carriageLength; // In meter
 		int m_nodePower; // In mW
@@ -48,6 +48,21 @@ namespace XCNS
 		unsigned long m_simulationPeriod; // in 0.1ms
 		unsigned long m_nodeSleepTime; // in 0.1ms
 		int m_logVerbosity; // 1 ~ 5
+		int m_IMLgap;
+		int m_ACKgap;
+		int m_LSgap;
+		int m_timeBeforeJudgingDeath;
+		int m_timeBeforeSleep;
+
+	// Event handlers
+	private:
+		void nodeWakeUpHandler(Event* evt);
+		void nodeSleepHandler(Event* evt);
+		void nodeFSMHandler(Event* evt);
+		void nodeBusyHandler(Event* evt);
+		void ACKMsgHandler(Event* evt);
+		void LSMsgHandler(Event* evt);
+		void IMLMsgHandler(Event* evt);
 	};
 }
 
