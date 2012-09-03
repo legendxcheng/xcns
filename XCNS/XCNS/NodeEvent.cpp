@@ -1,0 +1,32 @@
+#include "NodeEvent.h"
+
+namespace XCNS
+{
+
+
+NodeEvent::NodeEvent(void)
+{
+}
+
+
+NodeEvent::~NodeEvent(void)
+{
+}
+
+NodeEvent::NodeEvent(unsigned int atype, int a_nodeID, bool a_busy)
+{
+	m_nodeID = a_nodeID;
+	m_type = atype;
+	m_isBusy = a_busy;
+
+}
+
+NodeEvent::NodeEvent(unsigned int a_type, int a_nodeID, std::string fromS, std::string toS)
+{
+	m_nodeID = a_nodeID;
+	m_type = a_type;
+	m_fromState = fromS;
+	m_toState = toS;
+}	
+
+}

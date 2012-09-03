@@ -17,10 +17,17 @@ namespace XCNS
 		unsigned int m_type;
 	public: // Constant.
 		static const int EVENT_GLOBAL_SIMSTART = 0X1000;
-		static const int EVENT_GLOBAL_SIMEND = 0x10001;
-		static const int EVENT_MESSAGE_ACK = 0x10002;
-		static const int EVENT_MESSAGE_LS = 0x10003;
-		static const int EVENT_MESSAGE_IML = 0x10004;
+		static const int EVENT_GLOBAL_SIMEND = 0X1001;
+
+		static const int EVENT_NODE_WAKEUP = 0x10010;
+		static const int EVENT_NODE_SLEEP = 0x10011;
+		static const int EVENT_NODE_FSM = 0x10012; // state change system
+		static const int EVENT_NODE_IDLE = 0x10013;
+		static const int EVENT_NOdE_BUSY = 0x10014;
+
+		static const int EVENT_MESSAGE_ACK = 0x11000;
+		static const int EVENT_MESSAGE_LS = 0x11001;
+		static const int EVENT_MESSAGE_IML = 0x11002;
 	};
 }
 
