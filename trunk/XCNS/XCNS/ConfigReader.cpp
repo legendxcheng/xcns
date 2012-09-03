@@ -75,6 +75,9 @@ void ConfigReader::ReadConfig()
 	TiXmlElement *timeBeforeSleep = timeBeforeJudgingDeath->NextSiblingElement();
 	ovsr->m_timeBeforeSleep = atoi(logVerbosity->FirstChild()->Value());
 
+	TiXmlElement *dropRate = timeBeforeSleep->NextSiblingElement();
+	ovsr->m_dropRate = atoi(logVerbosity->FirstChild()->Value());
+
 	Logger* logger = Logger::getInstance();
 	logger->setVerbosity(ovsr->m_logVerbosity);
 }

@@ -26,7 +26,7 @@ public:
 public:
 	Node* getNodeByID(int id);
 	void initialize();
-
+	int getNodeNum();
 };
 }
 

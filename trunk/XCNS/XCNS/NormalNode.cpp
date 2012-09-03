@@ -18,7 +18,7 @@ namespace XCNS
 
 	}
 
-	void NormalNode::sendPackrt(Packet* pkt)
+	void NormalNode::sendPacket(Packet* pkt)
 	{
 
 	}

@@ -22,4 +22,9 @@ namespace XCNS
 		return m_nodeID;
 	}
 
+	void MessageEvent::setNodeID(int nid)
+	{
+		m_nodeID = nid;
+	}
+
 }

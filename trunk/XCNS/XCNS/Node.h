@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+class NodeMgr;
 
 namespace XCNS
 {
@@ -19,8 +20,11 @@ protected:
 	int m_pos; // Position in a line.
 	int m_groupGUID;
 	int m_id; //
-	std::string m_state;
-	
+	int m_power;
+	int m_recvThreshold;
+	int m_handleDelay;
+	int m_dropRate;
+
 // Logics.
 protected:
 	bool m_sleeping;
@@ -28,10 +32,11 @@ protected:
 	int m_maxIML; // the max node id which sended an IML or a LS message to this node
 	int m_msgSendCount;// counter
 	int m_msgRecvCount;// counter
-	int m_curState; // FSM state
+	std::string m_state;
 
 
 public:
+	friend class NodeMgr;
 	void setID(int a_id, int a_groupGUID);
 	void setPosition(int pos);
 	bool isBusy();

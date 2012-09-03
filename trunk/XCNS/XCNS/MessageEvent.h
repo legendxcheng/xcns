@@ -12,6 +12,7 @@ namespace XCNS
 		int m_nodeID;
 	public:
 		int getNodeID();
+		void setNodeID(int nid);
 		MessageEvent(unsigned int a_type);
 		MessageEvent(void);
 		~MessageEvent(void);

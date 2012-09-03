@@ -40,6 +40,22 @@ void Overseer::initialize()
 	ge = new GlobalEvent(Event::EVENT_GLOBAL_SIMEND);
 	ge->setTimeStamp(m_simulationPeriod);
 	m_evq.push(ge);
+	
+	// Initialize Node
+	NodeMgr::getInstance()->initialize();
+	// Insert wakeUp Event.
+	// Every node is initialized to be in sleep.
+	for (int i = 0; i < NodeMgr::getInstance()->getNodeNum(); ++i)
+	{
+		MessageEvent* mevt = new MessageEvent(Event::EVENT_NODE_WAKEUP);
+		mevt->setTimeStamp(0);
+		mevt->setNodeID(i);
+		m_evq.push(mevt);
+	}
+	
+
+
+
 }
 
 Overseer::~Overseer(void)
@@ -112,9 +128,10 @@ void Overseer::simulate()
 	{
 		Event* evt = m_evq.top();
 		m_time = evt->getTimeStamp();
-		delete evt;
+		
 		handleEvent(evt);
 		m_evq.pop();
+		delete evt;
 	}
 }
 

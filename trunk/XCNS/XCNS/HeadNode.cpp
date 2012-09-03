@@ -13,4 +13,21 @@ namespace XCNS
 	{
 	}
 
+	void HeadNode::recvPacket(Packet* pkt)
+	{
+
+	}
+
+	void HeadNode::sendPacket(Packet* pkt)
+	{
+
+	}
+
+	void HeadNode::transit(std::string toState)
+	{
+		m_state = toState;
+
+		// do logic
+	}
+
 }
