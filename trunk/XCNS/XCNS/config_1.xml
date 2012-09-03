@@ -1,0 +1,45 @@
+<config>
+	<carriageLength>
+		25
+	</carriageLength>
+	<nodePower>
+		200
+	</nodePower>
+	<recvThreshold>
+		5
+	</recvThreshold>
+	<nodeDelayOfHandlingMessage>
+		100
+	</nodeDelayOfHandlingMessage>
+	<groupGUID>
+		19900604
+	</groupGUID>
+	<carriageNum>
+		1
+	</carriageNum>
+	<simulatePeriod>
+		3600000000
+	</simulatePeriod>
+	<nodeSleepTime>
+		36000000
+	</nodeSleepTime>
+	<logVerbosity>
+		3
+	</logVerbosity>
+	<IMLgap>
+		10000
+	</IMLgap>
+	<ACKgap>
+		10000
+	</ACKgap>
+	<LSgap>
+		10000
+	</LSgap>
+	<timeBeforeJudgingDeath>
+		50000
+	</timeBeforeJudgingDeath>
+	<timeBeforeSleep>
+		50000
+	</timeBeforeSleep>
+
+</config>
