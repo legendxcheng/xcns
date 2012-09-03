@@ -41,5 +41,8 @@
 	<timeBeforeSleep>
 		50000
 	</timeBeforeSleep>
+	<dropRate>
+		1
+	</dropRate>
 
 </config>
