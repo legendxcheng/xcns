@@ -19,6 +19,11 @@ void Node::setPosition(int pos)
 	m_pos = pos;
 }
 
+int Node::getID()
+{
+	return m_id;
+}
+
 Node::Node(void)
 {
 }
@@ -26,6 +31,17 @@ Node::Node(void)
 
 Node::~Node(void)
 {
+}
+
+void Node::wakeUp()
+{
+
+	m_sleeping = false;
+}
+
+void Node::sleep()
+{
+	m_sleeping = true;
 }
 
 }
