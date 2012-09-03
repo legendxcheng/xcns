@@ -108,7 +108,7 @@ void Overseer::simulate()
 	{
 		Event* evt = m_evq.top();
 		m_time = evt->getTimeStamp();
-
+		delete evt;
 		handleEvent(evt);
 		m_evq.pop();
 	}
