@@ -7,6 +7,10 @@ namespace XCNS
 		Event(void);
 		~Event(void);
 	public:
+		bool operator<(const Event& evt) const
+		{
+			return m_timeStamp < evt.m_timeStamp;
+		}
 		int getType();
 		unsigned int getTimeStamp();
 		void setTimeStamp(unsigned long tstp);

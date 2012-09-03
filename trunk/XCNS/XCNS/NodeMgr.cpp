@@ -55,14 +55,15 @@ void NodeMgr::initialize()
 
 	// Insert HeadNode first.
 	HeadNode* hnode = new HeadNode();
-	// TODO: set headnode attributes
-	
-	m_nodes.push_back(hnode);
+	//Set headnode attributes
+	hnode->m_id = 0;
 	hnode->setPosition(0);
 	hnode->m_power = ovsr->m_nodePower;
 	hnode->m_recvThreshold = ovsr->m_recvThreshold;
 	hnode->m_timeBeforeJudgingDeath = ovsr->m_timeBeforeJudgingDeath;
 	hnode->m_timeBeforeSleep = ovsr->m_timeBeforeSleep;
+
+	m_nodes.push_back(hnode);
 
 	for (int i = 1; i <= ovsr->m_carriageNum; ++i)
 	{
@@ -70,7 +71,7 @@ void NodeMgr::initialize()
 		NormalNode* newNode = new NormalNode();
 
 		// Set node's attributes.
-		newNode->setID(ovsr->m_groupGUID, i);
+		newNode->setID(i, ovsr->m_groupGUID);
 		newNode->setPosition(ovsr->m_carriageLength * i);
 		newNode->m_power = ovsr->m_nodePower;
 		newNode->m_recvThreshold = ovsr->m_recvThreshold;

@@ -57,26 +57,26 @@ void ConfigReader::ReadConfig()
 
 
 	TiXmlElement *IMLgap = logVerbosity->NextSiblingElement();
-	ovsr->m_IMLgap = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_IMLgap = atoi(IMLgap->FirstChild()->Value());
 
 
 	TiXmlElement *ACKgap = IMLgap->NextSiblingElement();
-	ovsr->m_ACKgap = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_ACKgap = atoi(ACKgap->FirstChild()->Value());
 
 
 	TiXmlElement *LSgap = ACKgap->NextSiblingElement();
-	ovsr->m_LSgap = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_LSgap = atoi(LSgap->FirstChild()->Value());
 
 
 	TiXmlElement *timeBeforeJudgingDeath = LSgap->NextSiblingElement();
-	ovsr->m_timeBeforeJudgingDeath = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_timeBeforeJudgingDeath = atoi(timeBeforeJudgingDeath->FirstChild()->Value());
 
 
 	TiXmlElement *timeBeforeSleep = timeBeforeJudgingDeath->NextSiblingElement();
-	ovsr->m_timeBeforeSleep = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_timeBeforeSleep = atoi(timeBeforeSleep->FirstChild()->Value());
 
 	TiXmlElement *dropRate = timeBeforeSleep->NextSiblingElement();
-	ovsr->m_dropRate = atoi(logVerbosity->FirstChild()->Value());
+	ovsr->m_dropRate = atoi(dropRate->FirstChild()->Value());
 
 	Logger* logger = Logger::getInstance();
 	logger->setVerbosity(ovsr->m_logVerbosity);

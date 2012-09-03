@@ -87,10 +87,10 @@ void Overseer::handleEvent(Event* evt)
 	switch(evt->getType())
 	{
 	case Event::EVENT_GLOBAL_SIMEND:
-		logger->addLog(1, "Simulation starts.");
+		logger->addLog(1, "Simulation ends.");
 		break;
 	case Event::EVENT_GLOBAL_SIMSTART:
-		logger->addLog(1, "Simulation ends.");
+		logger->addLog(1, "Simulation starts.");
 		break;
 	case Event::EVENT_NODE_BUSY:
 		nodeBusyHandler(evt);
@@ -142,6 +142,7 @@ void Overseer::nodeWakeUpHandler(Event* evt)
 	// Add log.
 	char logStr[300];
 	sprintf(logStr, "node %d wakes up.", nevt->getNodeID());
+	Logger::getInstance()->addLog(1, logStr);
 
 	// Logic.
 	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->wakeUp();

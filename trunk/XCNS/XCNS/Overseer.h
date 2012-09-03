@@ -8,21 +8,19 @@ class ConfigReader;
 
 namespace XCNS
 {
-	struct cmpEvent
-	{
-		bool operator() (Event* a, Event* b)
-		{
 
-			if (a->getTimeStamp() <= b->getTimeStamp())
-			{
-				return true;
-			}
-			return false;
-		}
-	};
 
 	class Overseer
 	{
+	public:
+		struct cmpEvent
+		{
+			bool operator()(Event* a, Event* b)
+			{
+
+				return *b < *a;
+			}
+		};
 	public:
 		friend class NodeMgr;
 		void initialize();

@@ -3,7 +3,7 @@
 		25
 	</carriageLength>
 	<nodePower>
-		15
+		200
 	</nodePower>
 	<recvThreshold>
 		5
@@ -15,7 +15,7 @@
 		19900604
 	</groupGUID>
 	<carriageNum>
-		100
+		1
 	</carriageNum>
 	<simulatePeriod>
 		3600000000
@@ -36,10 +36,13 @@
 		10000
 	</LSgap>
 	<timeBeforeJudgingDeath>
-		5000
+		50000
 	</timeBeforeJudgingDeath>
 	<timeBeforeSleep>
-		5000
+		50000
 	</timeBeforeSleep>
+	<dropRate>
+		1
+	</dropRate>
 
 </config>
