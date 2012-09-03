@@ -18,8 +18,13 @@ private:
 	int m_groupGUID;
 	int m_id; //
 	int m_state;
+	
+// Logics.
 private:
 	bool m_busy; // Boolean for whether the node is busy working.
+	int m_maxIML; // the max node id which sended an IML or a LS message to this node
+	int m_msgSendCount;// counter
+	int m_msgRecvCount;// counter
 
 public:
 	void setID(int a_id, int a_groupGUID);

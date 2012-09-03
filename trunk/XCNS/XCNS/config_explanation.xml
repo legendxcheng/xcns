@@ -33,4 +33,24 @@
 		<!-- from 1 ~ 5 -->
 		3
 	</logVerbosity>
+	<IMLgap>
+	<!-- in 0.1ms -->
+		10000
+	</IMLgap>
+	<ACKgap>
+	<!-- in 0.1ms -->
+		10000
+	</ACKgap>
+	<LSgap>
+	<!-- in 0.1ms -->
+		10000
+	</LSgap>
+	<timeBeforeJudgingDeath>
+	<!-- in 0.1ms -->
+		5000
+	</timeBeforeJudgingDeath>
+	<timeBeforeSleep>
+	<!-- in 0.1ms -->
+		5000
+	</timeBeforeSleep>
 </config>

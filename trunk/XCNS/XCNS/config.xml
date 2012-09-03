@@ -3,7 +3,6 @@
 		25
 	</carriageLength>
 	<nodePower>
-
 		15
 	</nodePower>
 	<recvThreshold>
@@ -27,4 +26,20 @@
 	<logVerbosity>
 		3
 	</logVerbosity>
+	<IMLgap>
+		10000
+	</IMLgap>
+	<ACKgap>
+		10000
+	</ACKgap>
+	<LSgap>
+		10000
+	</LSgap>
+	<timeBeforeJudgingDeath>
+		5000
+	</timeBeforeJudgingDeath>
+	<timeBeforeSleep>
+		5000
+	</timeBeforeSleep>
+
 </config>
