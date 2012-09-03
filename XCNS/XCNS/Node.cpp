@@ -26,6 +26,7 @@ int Node::getID()
 
 Node::Node(void)
 {
+	m_sleeping = true;
 }
 
 

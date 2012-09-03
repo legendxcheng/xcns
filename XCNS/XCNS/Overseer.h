@@ -2,6 +2,8 @@
 #include <queue>
 #include <vector>
 #include "Event.h"
+#include "NodeMgr.h"
+
 class ConfigReader;
 
 namespace XCNS
@@ -22,6 +24,7 @@ namespace XCNS
 	class Overseer
 	{
 	public:
+		friend class NodeMgr;
 		void initialize();
 		friend class ConfigReader;
 		unsigned int getTime();
@@ -53,7 +56,7 @@ namespace XCNS
 		int m_LSgap;
 		int m_timeBeforeJudgingDeath;
 		int m_timeBeforeSleep;
-
+		int m_dropRate;
 	// Event handlers
 	private:
 		void nodeWakeUpHandler(Event* evt);
@@ -63,6 +66,7 @@ namespace XCNS
 		void ACKMsgHandler(Event* evt);
 		void LSMsgHandler(Event* evt);
 		void IMLMsgHandler(Event* evt);
+
 	};
 }
 
