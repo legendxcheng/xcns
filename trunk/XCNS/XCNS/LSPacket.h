@@ -7,6 +7,8 @@ namespace XCNS
 class LSPacket :
 	public Packet
 {
+private:
+
 public:
 	LSPacket(void);
 	~LSPacket(void);

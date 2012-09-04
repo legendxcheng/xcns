@@ -120,6 +120,16 @@ void Overseer::handleEvent(Event* evt)
 	}
 }
 
+void Overseer::addEvent(Event* evt)
+{
+	m_evq.push(evt);
+}
+
+int Overseer::getCarriageNum()
+{
+	return m_carriageNum;
+}
+
 /*
 	Main function to simulate the network.
 	There is a loop here.	
