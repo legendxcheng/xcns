@@ -17,6 +17,7 @@ public:
 
 // Attributes.
 protected:
+	friend class Overseer;
 	int m_pos; // Position in a line.
 	int m_groupGUID;
 	int m_id; //
@@ -24,7 +25,7 @@ protected:
 	int m_recvThreshold;
 	int m_handleDelay;
 	int m_dropRate;
-	
+	int m_freq;
 
 // Logics.
 protected:
@@ -50,6 +51,7 @@ public:
 	friend class Overseer;
 	void setID(int a_id, int a_groupGUID);
 	void setPosition(int pos);
+	int getPosition();
 	bool isBusy();
 	int getID();
 

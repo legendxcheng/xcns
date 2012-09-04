@@ -8,8 +8,9 @@ class LSPacket :
 	public Packet
 {
 private:
-
+	char m_nodeState[50];
 public:
+	void setNodeState(char* src);
 	LSPacket(void);
 	~LSPacket(void);
 };

@@ -5,7 +5,8 @@
 #include "NodeEvent.h"
 #include "MessageEvent.h"
 #include "NodeMgr.h"
-
+#include "LSPacket.h"
+#include "IMLPacket.h"
 namespace XCNS
 {
 
@@ -139,6 +140,8 @@ void Overseer::simulate()
 	while (!m_evq.empty())
 	{
 		Event* evt = m_evq.top();
+
+		// Update the system time.
 		m_time = evt->getTimeStamp();
 		
 		handleEvent(evt);
@@ -226,10 +229,11 @@ void Overseer::LSMsgHandler(Event* evt)
 	sprintf(logStr, "node %d broadcasts LS message.", mevt->getNodeID());
 	Logger::getInstance()->addLog(1, logStr);
 	// Logic
+	// TODO: get packet
+	Node* tnode = NodeMgr::getInstance()->getNodeByID(mevt->getNodeID());
+	LSPacket* lspkt = (LSPacket*)tnode->sendPacket(Packet::PACKET_LS);
 	// TODO: find nodes which can recv the message, call thier recvPacket function
-
-	
-
+	NodeMgr::getInstance()->broadcastPacket(lspkt);
 }
 void Overseer::IMLMsgHandler(Event* evt)
 {

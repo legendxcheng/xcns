@@ -78,6 +78,9 @@ void ConfigReader::ReadConfig()
 	TiXmlElement *dropRate = timeBeforeSleep->NextSiblingElement();
 	ovsr->m_dropRate = atoi(dropRate->FirstChild()->Value());
 
+	TiXmlElement *freq = dropRate->NextSiblingElement();
+	ovsr->m_nodeFreq = atoi(freq->FirstChild()->Value());
+
 	Logger* logger = Logger::getInstance();
 	logger->setVerbosity(ovsr->m_logVerbosity);
 }

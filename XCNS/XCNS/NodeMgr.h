@@ -6,6 +6,8 @@
 	Class for managine nodes.
 	Singleton
 */
+class Packet;
+
 namespace XCNS
 {
 
@@ -27,6 +29,7 @@ public:
 	Node* getNodeByID(int id);
 	void initialize();
 	int getNodeNum();
+	void broadcastPacket(Packet* pkt);
 };
 }
 
