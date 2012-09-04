@@ -96,6 +96,8 @@ void Overseer::handleEvent(Event* evt)
 		nodeBusyHandler(evt);
 		
 		break;
+	case Event::EVENT_NODE_IDLE:
+		nodeIdleHandler(evt);
 	case Event::EVENT_NODE_FSM:
 		nodeFSMHandler(evt);
 
@@ -156,7 +158,7 @@ void Overseer::nodeSleepHandler(Event* evt)
 	// Add log.
 	char logStr[300];
 	sprintf(logStr, "node %d sleeps.", nevt->getNodeID());
-
+	Logger::getInstance()->addLog(1, logStr);
 	// Logic.
 	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->wakeUp();
 
@@ -164,29 +166,47 @@ void Overseer::nodeSleepHandler(Event* evt)
 void Overseer::nodeFSMHandler(Event* evt)
 {
 	NodeEvent* nevt = (NodeEvent*)evt;
-
 	// Add log.
 	char logStr[300];
-	sprintf(logStr, "node %d sleeps.", nevt->getNodeID());
-
+	sprintf(logStr, "node %d changes state, from %s to %s.", 
+		nevt->getNodeID(), nevt->m_fromState.c_str(), nevt->m_toState.c_str());
+	Logger::getInstance()->addLog(4, logStr);
 	// Logic.
 	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->transit(nevt->getToState());
 }
 void Overseer::nodeBusyHandler(Event* evt)
 {
+	NodeEvent* nevt = (NodeEvent*)evt;
+	char logStr[300];
+	sprintf(logStr, "node %d becomes busy.", nevt->getNodeID());
+	Logger::getInstance()->addLog(4, logStr);
+
+	// Logic
+}
+
+void Overseer::nodeIdleHandler(Event* evt)
+{
+	NodeEvent* nevt = (NodeEvent*)evt;
+	char logStr[300];
+	sprintf(logStr, "node %d becomes idle.", nevt->getNodeID());
+	Logger::getInstance()->addLog(4, logStr);
+
+	// Logic
 
 }
+
+// Deprecated.
 void Overseer::ACKMsgHandler(Event* evt)
 {
 	MessageEvent* mevt = (MessageEvent*)evt;
+	
 	// Add logs.
 	char logStr[300];
 	sprintf(logStr, "node %d broadcasts ACK message.", mevt->getNodeID());
+	Logger::getInstance()->addLog(1, logStr);
 
 	// Logic
 	// TODO: find nodes which can recv the message, call thier recvPacket function
-
-
 }
 void Overseer::LSMsgHandler(Event* evt)
 {
@@ -194,7 +214,7 @@ void Overseer::LSMsgHandler(Event* evt)
 	// Add logs.
 	char logStr[300];
 	sprintf(logStr, "node %d broadcasts LS message.", mevt->getNodeID());
-
+	Logger::getInstance()->addLog(1, logStr);
 	// Logic
 	// TODO: find nodes which can recv the message, call thier recvPacket function
 
@@ -205,6 +225,7 @@ void Overseer::IMLMsgHandler(Event* evt)
 	// Add logs.
 	char logStr[300];
 	sprintf(logStr, "node %d broadcasts IML message.", mevt->getNodeID());
+	Logger::getInstance()->addLog(1, logStr);
 
 	// Logic
 	// TODO: find nodes which can recv the message, call thier recvPacket function

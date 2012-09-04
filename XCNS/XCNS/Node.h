@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 class NodeMgr;
-
+class Overseer;
 namespace XCNS
 {
 
@@ -37,6 +37,7 @@ protected:
 
 public:
 	friend class NodeMgr;
+	friend class Overseer;
 	void setID(int a_id, int a_groupGUID);
 	void setPosition(int pos);
 	bool isBusy();
