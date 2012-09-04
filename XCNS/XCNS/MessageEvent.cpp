@@ -17,6 +17,11 @@ namespace XCNS
 	{
 	}
 
+	void MessageEvent::setPacket(Packet* packet)
+	{
+		m_pakcet = packet;
+	}
+
 	int MessageEvent::getNodeID()
 	{
 		return m_nodeID;

@@ -22,6 +22,7 @@ namespace XCNS
 			}
 		};
 	public:
+		void addEvent(Event* evt);
 		friend class NodeMgr;
 		void initialize();
 		friend class ConfigReader;
@@ -55,6 +56,9 @@ namespace XCNS
 		int m_timeBeforeJudgingDeath;
 		int m_timeBeforeSleep;
 		int m_dropRate;
+	// Getter
+	public:
+		int getCarriageNum();
 	// Event handlers
 	private:
 		void nodeWakeUpHandler(Event* evt);
