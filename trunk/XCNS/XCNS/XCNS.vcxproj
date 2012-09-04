@@ -73,6 +73,7 @@
     <ClCompile Include="NormalNode.cpp" />
     <ClCompile Include="Overseer.cpp" />
     <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="TailNode.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
@@ -91,6 +92,7 @@
     <ClInclude Include="NormalNode.h" />
     <ClInclude Include="Overseer.h" />
     <ClInclude Include="Packet.h" />
+    <ClInclude Include="TailNode.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
   </ItemGroup>
