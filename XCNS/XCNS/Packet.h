@@ -1,4 +1,6 @@
 #pragma once
+
+namespace {
 class Packet
 {
 public:
@@ -13,4 +15,5 @@ public:
 	Packet(void);
 	~Packet(void);
 };
+}
 
