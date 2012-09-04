@@ -22,11 +22,14 @@ namespace XCNS
 	public: // Constant.
 		static const int EVENT_GLOBAL_SIMSTART = 0X1000;
 		static const int EVENT_GLOBAL_SIMEND = 0X1001;
+		 
 
 		static const int EVENT_NODE_WAKEUP = 0x10010;
 		static const int EVENT_NODE_SLEEP = 0x10011;
 		static const int EVENT_NODE_FSM = 0x10012; // state change system
 		static const int EVENT_NODE_BUSY = 0x10013;
+		static const int EVENT_NODE_DISABLE = 0x10014;
+
 
 		static const int EVENT_MESSAGE_ACK = 0x11000;
 		static const int EVENT_MESSAGE_LS = 0x11001;
