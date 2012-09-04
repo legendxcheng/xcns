@@ -10,7 +10,6 @@ namespace XCNS
 		public Event
 	{
 	private:
-		Packet* m_pakcet;
 		int m_nodeID;
 	public:
 		int getNodeID();
@@ -18,6 +17,6 @@ namespace XCNS
 		MessageEvent(unsigned int a_type);
 		MessageEvent(void);
 		~MessageEvent(void);
-		void setPacket(Packet* packet);
+
 	};
 }

@@ -56,6 +56,7 @@ namespace XCNS
 		int m_timeBeforeJudgingDeath;
 		int m_timeBeforeSleep;
 		int m_dropRate;
+		int m_nodeFreq;
 	// Getter
 	public:
 		int getCarriageNum();

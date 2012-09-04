@@ -85,6 +85,11 @@ void Node::setNodeAlive(int nodeID)
 	 
 }
 
+int Node::getPosition()
+{
+	return m_pos;
+}
+
 void Node::setNodeDead(int nodeID)
 {
 	int tmp = nodeID / 4;

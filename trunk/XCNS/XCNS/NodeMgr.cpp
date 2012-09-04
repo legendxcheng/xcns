@@ -85,5 +85,10 @@ void NodeMgr::initialize()
 	}
 }
 
+void NodeMgr::broadcastPacket(Packet* pkt)
+{
+
+}
+
 }
 

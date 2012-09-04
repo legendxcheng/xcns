@@ -31,6 +31,26 @@ namespace XCNS
 
 	Packet* TailNode::sendPacket(int packetType)
 	{
+		switch(packetType)
+		{
+		case Packet::PACKET_LS:
+			LSPacket* lspkt = new LSPacket();
+			lspkt->setNodeState(m_nodeStates);
+			lspkt->setSenderID(m_id);
+
+			// Add a new event
+			MessageEvent* mevt = new MessageEvent(Event::EVENT_MESSAGE_LS);
+			mevt->setNodeID(m_id);
+			mevt->setTimeStamp(Overseer::getInstance()->getTime() + m_LSgap);
+			// the info tells that this node has to send an ls message
+			Overseer::getInstance()->addEvent(mevt);
+
+			return lspkt;
+			break;
+		case Packet::PACKET_IML:
+			// Not possible roads to here.
+			break;
+		}
 		return NULL;
 	}
 
@@ -47,8 +67,7 @@ namespace XCNS
 			MessageEvent* mevt = new MessageEvent(Event::EVENT_MESSAGE_LS);
 			mevt->setNodeID(m_id);
 			mevt->setTimeStamp(Overseer::getInstance()->getTime());
-			LSPacket* pkt = new LSPacket();
-			mevt->setPacket(pkt);
+			// the info tells that this node has to send an ls message
 			Overseer::getInstance()->addEvent(mevt);
 		}
 	}
