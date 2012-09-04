@@ -18,9 +18,9 @@ namespace XCNS
 
 	}
 
-	void NormalNode::sendPacket(Packet* pkt)
+	Packet* NormalNode::sendPacket(int packetType)
 	{
-
+		return NULL;
 	}
 
 	void NormalNode::transit(std::string toState)

@@ -29,9 +29,9 @@ namespace XCNS
 
 	}
 
-	void TailNode::sendPacket(Packet* pkt)
+	Packet* TailNode::sendPacket(int packetType)
 	{
-
+		return NULL;
 	}
 
 	void TailNode::transit(std::string toState)
@@ -49,7 +49,7 @@ namespace XCNS
 			mevt->setTimeStamp(Overseer::getInstance()->getTime());
 			LSPacket* pkt = new LSPacket();
 			mevt->setPacket(pkt);
-
+			Overseer::getInstance()->addEvent(mevt);
 		}
 	}
 

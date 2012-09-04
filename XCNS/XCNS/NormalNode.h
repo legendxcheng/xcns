@@ -21,7 +21,7 @@ namespace XCNS
 
 		virtual void transit(std::string toState);
 		virtual void recvPacket(Packet* pkt);
-		virtual void sendPacket(Packet* pkt);
+		virtual Packet* sendPacket(int packetType);
 	};
 
 }
