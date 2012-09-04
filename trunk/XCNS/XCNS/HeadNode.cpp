@@ -18,9 +18,9 @@ namespace XCNS
 
 	}
 
-	void HeadNode::sendPacket(Packet* pkt)
+	Packet* HeadNode::sendPacket(int packetType)
 	{
-
+		return NULL;
 	}
 
 	void HeadNode::transit(std::string toState)

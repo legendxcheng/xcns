@@ -16,7 +16,7 @@ namespace XCNS
 		HeadNode(void);
 		~HeadNode(void);
 		virtual void recvPacket(Packet* pkt);
-		virtual void sendPacket(Packet* pkt);
+		virtual Packet* sendPacket(int packetType);
 		virtual void transit(std::string toStage);
 	};
 

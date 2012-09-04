@@ -57,7 +57,7 @@ public:
 	virtual void sleep();
 
 	virtual void recvPacket(Packet* pkt) = 0;
-	virtual void sendPacket(Packet* pkt) = 0;
+	virtual Packet* sendPacket(int packetType) = 0;
 	virtual void transit(std::string toStage) = 0;// FSM transition
 
 	bool nodeStateComplete();
