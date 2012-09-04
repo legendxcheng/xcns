@@ -2,7 +2,7 @@
 #include "Overseer.h"
 #include "NormalNode.h"
 #include "HeadNode.h"
-
+#include "Packet.h"
 
 namespace XCNS
 {
@@ -87,7 +87,30 @@ void NodeMgr::initialize()
 
 void NodeMgr::broadcastPacket(Packet* pkt)
 {
+	for (int i = 0; i < m_nodes.size(); ++i)
+	{
+		if (i == pkt->getSenderID())
+			continue;
+		Node* snode = m_nodes[pkt->getSenderID()];
+		Node* rnode = m_nodes[i];
+		if (canReceiveSignal(abs(snode->getPosition() - rnode->getPosition()), snode->getFrequency(), snode->getPower(), 
+			rnode->getRecvThreshold()))
+		{
+			rnode->recvPacket(pkt);
+		}
+	}
+}
 
+//distance表示传输距离，单位为km；frequency表示节点工作频率，单位为MHz。sendingPower表示发送功率，单位为mW。
+bool NodeMgr::canReceiveSignal( double distance, double frequency, double sendingPower, double threshold )
+{
+	double receivingPower = 0;
+	receivingPower = sendingPower / ( 1753.88 * distance * distance * frequency * frequency );
+	if (receivingPower < threshold)
+	{
+		return false;
+	}
+	return true;
 }
 
 }

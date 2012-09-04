@@ -24,7 +24,7 @@ private:
 public:
 	static NodeMgr* getInstance();
 	~NodeMgr(void);
-
+	static bool NodeMgr::canReceiveSignal( double distance, double frequency, double sendingPower, double threshold );
 public:
 	Node* getNodeByID(int id);
 	void initialize();

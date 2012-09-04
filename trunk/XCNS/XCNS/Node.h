@@ -17,7 +17,7 @@ public:
 
 // Attributes.
 protected:
-	friend class Overseer;
+	friend class NodeMgr;
 	int m_pos; // Position in a line.
 	int m_groupGUID;
 	int m_id; //
@@ -52,6 +52,9 @@ public:
 	void setID(int a_id, int a_groupGUID);
 	void setPosition(int pos);
 	int getPosition();
+	int getPower();
+	int getFrequency();
+	int getRecvThreshold();
 	bool isBusy();
 	int getID();
 
@@ -63,7 +66,7 @@ public:
 	virtual void transit(std::string toStage) = 0;// FSM transition
 
 	bool nodeStateComplete();
-	void resetNodeStates(); 
+	void resetNodeStates();
 	void copyNodeStates(char* src, char* des);
 	void mergeNodeStates(char* src, char* des);
 	void setNodeAlive(int nodeID);

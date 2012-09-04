@@ -40,6 +40,20 @@ void Node::wakeUp()
 	m_sleeping = false;
 }
 
+
+int Node::getPower()
+{
+	return m_power;
+}
+int Node::getFrequency()
+{
+	return m_freq;
+}
+int Node::getRecvThreshold()
+{
+	return m_recvThreshold;
+}
+
 void Node::sleep()
 {
 	m_sleeping = true;
