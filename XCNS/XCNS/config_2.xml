@@ -41,8 +41,11 @@
 	<timeBeforeSleep>
 		50000
 	</timeBeforeSleep>
-		<dropRate>
+	<dropRate>
 		1
 	</dropRate>
+	<frequency>
+		100
+	</frequency>
 
 </config>

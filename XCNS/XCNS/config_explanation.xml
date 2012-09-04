@@ -8,7 +8,7 @@
 		15
 	</nodePower>
 	<recvThreshold>
-		<!-- in W -->
+		<!-- in mW -->
 		5
 	</recvThreshold>
 	<nodeDelayOfHandlingMessage>
@@ -53,4 +53,10 @@
 	<!-- in 0.1ms -->
 		5000
 	</timeBeforeSleep>
+	<dropRate>
+		1
+	</dropRate>
+	<frequency>
+		100
+	</frequency>
 </config>

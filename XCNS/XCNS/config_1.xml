@@ -44,5 +44,8 @@
 	<dropRate>
 		1
 	</dropRate>
+	<frequency>
+		100
+	</frequency>
 
 </config>
