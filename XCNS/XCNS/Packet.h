@@ -1,6 +1,6 @@
 #pragma once
 
-namespace {
+namespace XCNS{
 class Packet
 {
 public:

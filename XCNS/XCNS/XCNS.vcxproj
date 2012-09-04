@@ -64,7 +64,9 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GlobalEvent.cpp" />
     <ClCompile Include="HeadNode.cpp" />
+    <ClCompile Include="IMLPacket.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="LSPacket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MessageEvent.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -84,7 +86,9 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="GlobalEvent.h" />
     <ClInclude Include="HeadNode.h" />
+    <ClInclude Include="IMLPacket.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="LSPacket.h" />
     <ClInclude Include="MessageEvent.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeEvent.h" />
