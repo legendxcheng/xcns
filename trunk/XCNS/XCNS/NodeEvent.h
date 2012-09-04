@@ -1,7 +1,7 @@
 #pragma once
 #include "event.h"
 #include <string>
-
+class Overseer;
 namespace XCNS
 {
 
@@ -10,6 +10,7 @@ class NodeEvent :
 	public Event
 {
 private:
+	friend class Overseer;
 	int m_nodeID;
 	std::string m_fromState;
 	std::string m_toState;

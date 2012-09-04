@@ -27,8 +27,9 @@ namespace XCNS
 		static const int EVENT_NODE_WAKEUP = 0x10010;
 		static const int EVENT_NODE_SLEEP = 0x10011;
 		static const int EVENT_NODE_FSM = 0x10012; // state change system
-		static const int EVENT_NODE_BUSY = 0x10013;
-		static const int EVENT_NODE_DISABLE = 0x10014;
+		static const int EVENT_NODE_BUSY = 0x10013; // becomes busy
+		static const int EVENT_NODE_IDLE = 0x10014; // becomes idle
+		static const int EVENT_NODE_DISABLE = 0x10015;
 
 
 		static const int EVENT_MESSAGE_ACK = 0x11000;

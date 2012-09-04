@@ -61,9 +61,11 @@ namespace XCNS
 		void nodeSleepHandler(Event* evt);
 		void nodeFSMHandler(Event* evt);
 		void nodeBusyHandler(Event* evt);
+		void nodeIdleHandler(Event* evt);
 		void ACKMsgHandler(Event* evt);
 		void LSMsgHandler(Event* evt);
 		void IMLMsgHandler(Event* evt);
+		
 
 	};
 }
