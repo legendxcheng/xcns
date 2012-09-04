@@ -47,9 +47,6 @@ namespace XCNS
 
 			return lspkt;
 			break;
-		case Packet::PACKET_IML:
-			// Not possible roads to here.
-			break;
 		}
 		return NULL;
 	}

@@ -1,5 +1,5 @@
 #include "LSPacket.h"
-#include "stdlib.h"
+#include <string>
 namespace XCNS
 {
 
