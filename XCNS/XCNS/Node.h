@@ -32,9 +32,11 @@ protected:
 	bool m_disabled;
 	bool m_sleeping;
 	bool m_busy; // Boolean for whether the node is busy working.
-	int m_maxIML; // the max node id which sended an IML or a LS message to this node
-	int m_msgSendCount;// counter
-	int m_msgRecvCount;// counter
+	int m_minIML; // the max node id which sended an IML or a LS message to this node
+	int m_msgSendCount; // counter
+	int m_msgRecvCount; // counter
+	int m_lastLSFromMinIMLTime; 
+	int m_lastRecvTime;
 	std::string m_state;
 	/*
 		Every 2 bits represents a node's state

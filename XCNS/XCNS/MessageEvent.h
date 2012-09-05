@@ -17,6 +17,6 @@ namespace XCNS
 		MessageEvent(unsigned int a_type);
 		MessageEvent(void);
 		~MessageEvent(void);
-
+		
 	};
 }

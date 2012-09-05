@@ -11,6 +11,7 @@ namespace XCNS
 	private:
 		int m_timeBeforeSleep;
 		int m_LSgap;
+		int m_sleepTime;
 	public:
 		friend class NodeMgr;
 		TailNode(void);

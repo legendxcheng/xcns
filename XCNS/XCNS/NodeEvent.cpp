@@ -3,6 +3,10 @@
 namespace XCNS
 {
 
+NodeEvent::NodeEvent(unsigned int atype)
+{
+	m_type = atype;
+}
 
 NodeEvent::NodeEvent(void)
 {
@@ -26,6 +30,7 @@ std::string NodeEvent::getToState()
 	return m_toState;
 }
 
+
 NodeEvent::NodeEvent(unsigned int a_type, int a_nodeID, std::string fromS, std::string toS)
 {
 	m_nodeID = a_nodeID;
@@ -38,4 +43,10 @@ int NodeEvent::getNodeID()
 {
 	return m_nodeID;
 }
+
+void NodeEvent::setNodeID(int nid)
+{
+	m_nodeID = nid;
+}
+
 }
