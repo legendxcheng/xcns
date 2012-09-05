@@ -106,7 +106,9 @@ void NodeMgr::initialize()
 
 		m_nodes.push_back(newNode);
 	}
-	disableNode(1);
+	disableNode(9);
+	disableNode(5);
+	disableNode(2);
 	NormalNode* tailNode = (NormalNode*)m_nodes[ovsr->m_carriageNum];
 	tailNode->setAsTailNode();
 }

@@ -15,25 +15,25 @@
 		19900604
 	</groupGUID>
 	<carriageNum>
-		1
+		100
 	</carriageNum>
 	<simulatePeriod>
-		1800000000
+		180000000
 	</simulatePeriod>
 	<nodeSleepTime>
 		36000000
 	</nodeSleepTime>
 	<logVerbosity>
-		3
+		1
 	</logVerbosity>
 	<IMLgap>
-		10000
+		1000
 	</IMLgap>
 	<ACKgap>
-		10000
+		1000
 	</ACKgap>
 	<LSgap>
-		10000
+		1000
 	</LSgap>
 	<timeBeforeJudgingDeath>
 		50000
