@@ -4,7 +4,7 @@
 #include "NodeEvent.h"
 #include "LSPacket.h"
 #include "Overseer.h"
-
+#include "Logger.h"
 
 namespace XCNS
 {
@@ -24,6 +24,8 @@ namespace XCNS
 	{
 		m_lastLSFromMinIMLTime = -1;
 		m_lastRecvTime = -1;
+		m_minIML = 10000;
+		m_sleeping = false;
 		resetNodeStates();
 		if (m_isTailNode)
 			transit("Q2");
@@ -33,11 +35,18 @@ namespace XCNS
 
 	void NormalNode::sleep()
 	{
-
+		m_sleeping = true;
+		// add a wake up event
+		NodeEvent* mevt = new NodeEvent(Event::EVENT_NODE_WAKEUP);
+		mevt->setTimeStamp(Overseer::getInstance()->getTime() + m_sleepTime);
+		mevt->setNodeID(m_id);
+		Overseer::getInstance()->addEvent(mevt);
 	}
 
 	void NormalNode::recvPacket(Packet* pkt)
 	{
+		if (m_sleeping || m_disabled)
+			return;
 		switch (pkt->getType())
 		{
 		case Packet::PACKET_IML:
@@ -106,7 +115,8 @@ namespace XCNS
 			}
 			else if (m_state.compare("Q2") == 0)
 			{
-				m_lastRecvTime = Overseer::getInstance()->getTime();
+				if (m_id < pkt->getSenderID())
+					m_lastRecvTime = Overseer::getInstance()->getTime();
 			}
 			break;
 		}
@@ -120,6 +130,8 @@ namespace XCNS
 
 	Packet* NormalNode::sendPacket(int packetType)
 	{
+		if (m_sleeping || m_disabled)
+			return NULL;
 		switch (packetType)
 		{
 		case Packet::PACKET_IML:
@@ -153,7 +165,8 @@ namespace XCNS
 				// the info tells that this node has to send an ls message
 				Overseer::getInstance()->addEvent(mevt);
 
-				if (m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep)
+				if (m_isTailNode ||
+					(m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep))
 				{
 					transit("Q0");
 				}
@@ -166,6 +179,9 @@ namespace XCNS
 
 	void NormalNode::transit(std::string toState)
 	{
+		char logStr[300];
+		sprintf(logStr, "node %d transit from state_%s to state_%s.", m_id, m_state.c_str(), toState.c_str());
+		Logger::getInstance()->addLog(4, logStr);
 		m_state = toState;
 
 		// do logic

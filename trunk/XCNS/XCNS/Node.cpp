@@ -26,12 +26,24 @@ int Node::getID()
 
 Node::Node(void)
 {
+	m_state = "Q0";
 	m_sleeping = true;
+	m_disabled = false;
 }
 
 
 Node::~Node(void)
 {
+}
+
+bool Node::isSleeping()
+{
+	return m_sleeping;
+}
+
+bool Node::isDisalbed()
+{
+	return m_disabled;
 }
 
 void Node::wakeUp()
