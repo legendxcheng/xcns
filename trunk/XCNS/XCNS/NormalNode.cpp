@@ -12,6 +12,7 @@ namespace XCNS
 
 	NormalNode::NormalNode(void)
 	{
+		m_isTailNode = false;
 	}
 
 
@@ -21,8 +22,13 @@ namespace XCNS
 
 	void NormalNode::wakeUp()
 	{
+		m_lastLSFromMinIMLTime = -1;
+		m_lastRecvTime = -1;
 		resetNodeStates();
-		transit("Q1");
+		if (m_isTailNode)
+			transit("Q2");
+		else
+			transit("Q1");
 	}
 
 	void NormalNode::sleep()
@@ -107,6 +113,11 @@ namespace XCNS
 
 	}
 
+	void NormalNode::setAsTailNode()
+	{
+		m_isTailNode = true;
+	}
+
 	Packet* NormalNode::sendPacket(int packetType)
 	{
 		switch (packetType)
@@ -133,6 +144,7 @@ namespace XCNS
 			{
 				LSPacket* lspkt = new LSPacket();
 				lspkt->setSenderID(m_id);
+				lspkt->setNodeState(m_nodeStates);
 
 				// Add a new event
 				MessageEvent* mevt = new MessageEvent(Event::EVENT_MESSAGE_LS);
@@ -141,10 +153,11 @@ namespace XCNS
 				// the info tells that this node has to send an ls message
 				Overseer::getInstance()->addEvent(mevt);
 
-				if (Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep)
+				if (m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep)
 				{
 					transit("Q0");
 				}
+				return lspkt;
 			}
 			break;
 		}

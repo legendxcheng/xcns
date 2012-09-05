@@ -33,6 +33,7 @@ Node* NodeMgr::getNodeByID(int id)
 		if (m_nodes[i]->getID() == id)
 			return m_nodes[i];
 	}
+	return NULL;
 }
 
 
@@ -62,6 +63,9 @@ void NodeMgr::initialize()
 	hnode->m_recvThreshold = ovsr->m_recvThreshold;
 	hnode->m_timeBeforeJudgingDeath = ovsr->m_timeBeforeJudgingDeath;
 	hnode->m_timeBeforeSleep = ovsr->m_timeBeforeSleep;
+	hnode->m_sleepTime = ovsr->m_nodeSleepTime;
+	hnode->m_freq = ovsr->m_nodeFreq;
+	hnode->m_LSgap = ovsr->m_LSgap;
 
 	m_nodes.push_back(hnode);
 
@@ -80,9 +84,13 @@ void NodeMgr::initialize()
 		newNode->m_IMLgap = ovsr->m_IMLgap;
 		newNode->m_LSgap = ovsr->m_LSgap;
 		newNode->m_ACKgap = ovsr->m_ACKgap;	
+		newNode->m_sleepTime = ovsr->m_nodeSleepTime;
+		newNode->m_freq = ovsr->m_nodeFreq;
 
 		m_nodes.push_back(newNode);
 	}
+	NormalNode* tailNode = (NormalNode*)m_nodes[ovsr->m_carriageNum];
+	tailNode->setAsTailNode();
 }
 
 void NodeMgr::broadcastPacket(Packet* pkt)

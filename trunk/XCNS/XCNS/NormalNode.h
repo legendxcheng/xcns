@@ -16,6 +16,8 @@ namespace XCNS
 		int m_timeBeforeSleep;
 		int m_sleepTime;
 
+		bool m_isTailNode;
+
 	public:
 		NormalNode(void);
 		~NormalNode(void);
@@ -25,6 +27,8 @@ namespace XCNS
 		virtual Packet* sendPacket(int packetType);
 		virtual void wakeUp();
 		virtual void sleep();
+		
+		void setAsTailNode();
 	};
 
 }
