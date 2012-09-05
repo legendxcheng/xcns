@@ -2,6 +2,7 @@
 #include "Overseer.h"
 #include "stdio.h"
 #include <iostream>
+#include "windows.h"
 namespace XCNS
 {
 
@@ -26,7 +27,7 @@ namespace XCNS
 			unsigned int curTime = Overseer::getInstance()->getTime();
 			sprintf(ss, "%d\.%dms  %s\n", curTime / 10, curTime %10, logStr.c_str());
 			fprintf(m_logFile, ss);
-			std::cout <<  ss;
+			OutputDebugString(ss);
 		}
 		
 	}
