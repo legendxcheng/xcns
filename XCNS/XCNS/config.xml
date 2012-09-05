@@ -24,7 +24,7 @@
 		36000000
 	</nodeSleepTime>
 	<logVerbosity>
-		5
+		3
 	</logVerbosity>
 	<IMLgap>
 		10000

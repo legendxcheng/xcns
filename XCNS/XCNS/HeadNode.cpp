@@ -21,6 +21,9 @@ namespace XCNS
 
 	void HeadNode::sleep()
 	{
+		// print final states
+		printNodeStates();
+
 		m_sleeping = true;
 		// add a wake up event
 		NodeEvent* mevt = new NodeEvent(Event::EVENT_NODE_WAKEUP);
@@ -195,4 +198,34 @@ namespace XCNS
 		}
 	}
 
+	void HeadNode::printNodeStates()
+	{
+		for (int i = 0; i < Overseer::getInstance()->getCarriageNum(); ++i)
+		{
+			int tmp = i / 4;
+			int tmp2 = i % 4;
+			int tmp3;
+			switch (tmp2)
+			{
+			case 0:
+				tmp3 = 2;
+				break;
+			case 1:
+				tmp3 = 8;
+				break;
+			case 2:
+				tmp3 = 32;
+				break;
+			case 3:
+				tmp3 = 128;
+				break;
+			}
+			if (m_nodeStates[tmp] & tmp3)
+			{
+				char logStr[300];
+				sprintf(logStr, "node %d is dead.", i);
+				Logger::getInstance()->addLog(1, logStr);
+			}
+		}
+	}
 }

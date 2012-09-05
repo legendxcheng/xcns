@@ -30,6 +30,8 @@ public:
 	void initialize();
 	int getNodeNum();
 	void broadcastPacket(Packet* pkt);
+	void disableNode(int nodeID);
+	void enableNode(int nodeID);
 };
 }
 

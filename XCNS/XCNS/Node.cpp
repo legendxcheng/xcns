@@ -113,6 +113,11 @@ void Node::setNodeAlive(int nodeID)
 	 
 }
 
+void Node::enable(bool able)
+{
+	m_disabled = !able;
+}
+
 int Node::getPosition()
 {
 	return m_pos;

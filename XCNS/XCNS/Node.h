@@ -29,6 +29,7 @@ protected:
 
 // Logics.
 protected:
+	friend class NodeMgr;
 	bool m_disabled;
 	bool m_sleeping;
 	bool m_busy; // Boolean for whether the node is busy working.
@@ -75,6 +76,7 @@ public:
 	void mergeNodeStates(char* src, char* des);
 	void setNodeAlive(int nodeID);
 	void setNodeDead(int nodeID);
+	void enable(bool able);
 };
 
 }
