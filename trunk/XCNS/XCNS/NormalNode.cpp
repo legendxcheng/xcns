@@ -22,6 +22,8 @@ namespace XCNS
 
 	void NormalNode::wakeUp()
 	{
+		if (m_disabled)
+			return;
 		m_lastLSFromMinIMLTime = -1;
 		m_lastRecvTime = -1;
 		m_minIML = 10000;
@@ -47,6 +49,10 @@ namespace XCNS
 	{
 		if (m_sleeping || m_disabled)
 			return;
+
+		if (pkt->getSenderID() > m_id)
+			m_lastRecvTime = Overseer::getInstance()->getTime();
+
 		switch (pkt->getType())
 		{
 		case Packet::PACKET_IML:
@@ -68,7 +74,7 @@ namespace XCNS
 			}
 			else if (m_state.compare("Q2") == 0)
 			{
-				m_lastRecvTime = Overseer::getInstance()->getTime();
+				
 			}
 			break;
 		case Packet::PACKET_LS:
@@ -117,6 +123,10 @@ namespace XCNS
 			{
 				if (m_id < pkt->getSenderID())
 					m_lastRecvTime = Overseer::getInstance()->getTime();
+				if (m_isTailNode)
+				{
+					transit("Q0");
+				}
 			}
 			break;
 		}
@@ -165,8 +175,7 @@ namespace XCNS
 				// the info tells that this node has to send an ls message
 				Overseer::getInstance()->addEvent(mevt);
 
-				if (m_isTailNode ||
-					(m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep))
+				if ((m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep))
 				{
 					transit("Q0");
 				}

@@ -46,6 +46,23 @@ int NodeMgr::getNodeNum()
 	return m_nodes.size();
 }
 
+void NodeMgr::disableNode(int nodeID)
+{
+	char logStr[300];
+	sprintf(logStr, "node %d is disabled.", nodeID);
+	Logger::getInstance()->addLog(1, logStr);
+	m_nodes[nodeID]->enable(false);
+}
+
+void NodeMgr::enableNode(int nodeID)
+{
+	char logStr[300];
+	sprintf(logStr, "node %d is enabled.", nodeID);
+	Logger::getInstance()->addLog(1, logStr);
+
+	m_nodes[nodeID]->enable(true);
+}
+
 /*
 
 	Initializing nodes.
@@ -89,6 +106,7 @@ void NodeMgr::initialize()
 
 		m_nodes.push_back(newNode);
 	}
+	disableNode(1);
 	NormalNode* tailNode = (NormalNode*)m_nodes[ovsr->m_carriageNum];
 	tailNode->setAsTailNode();
 }

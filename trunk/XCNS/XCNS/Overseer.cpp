@@ -246,7 +246,8 @@ void Overseer::IMLMsgHandler(Event* evt)
 	IMLPacket* imlpkt = (IMLPacket*)tnode->sendPacket(Packet::PACKET_IML);
 
 	// TODO: find nodes which can recv the message, call thier recvPacket function
-	NodeMgr::getInstance()->broadcastPacket(imlpkt);
+	if (imlpkt)
+		NodeMgr::getInstance()->broadcastPacket(imlpkt);
 }
 
 }

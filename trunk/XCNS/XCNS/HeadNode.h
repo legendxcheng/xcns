@@ -22,6 +22,7 @@ namespace XCNS
 		virtual void transit(std::string toStage);
 		virtual void wakeUp(); // Do some cleaning.
 		virtual void sleep();
+		void printNodeStates();
 	};
 
 }
