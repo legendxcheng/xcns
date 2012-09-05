@@ -109,11 +109,11 @@ void NodeMgr::broadcastPacket(Packet* pkt)
 	}
 }
 
-//distance表示传输距离，单位为km；frequency表示节点工作频率，单位为MHz。sendingPower表示发送功率，单位为mW。
+//distance表示传输距离，单位为m；frequency表示节点工作频率，单位为MHz。sendingPower表示发送功率，单位为mW。
 bool NodeMgr::canReceiveSignal( double distance, double frequency, double sendingPower, double threshold )
 {
 	double receivingPower = 0;
-	receivingPower = sendingPower / ( 1753.88 * distance * distance * frequency * frequency );
+	receivingPower = 1000000 * sendingPower / ( 1753.88 * distance * distance * frequency * frequency );
 	if (receivingPower < threshold)
 	{
 		return false;
