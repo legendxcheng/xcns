@@ -48,7 +48,7 @@ void Overseer::initialize()
 	// Every node is initialized to be in sleep.
 	for (int i = 0; i < NodeMgr::getInstance()->getNodeNum(); ++i)
 	{
-		MessageEvent* mevt = new MessageEvent(Event::EVENT_NODE_WAKEUP);
+		NodeEvent* mevt = new NodeEvent(Event::EVENT_NODE_WAKEUP);
 		mevt->setTimeStamp(0);
 		mevt->setNodeID(i);
 		m_evq.push(mevt);
@@ -235,8 +235,12 @@ void Overseer::IMLMsgHandler(Event* evt)
 	Logger::getInstance()->addLog(1, logStr);
 
 	// Logic
-	// TODO: find nodes which can recv the message, call thier recvPacket function
+	// TODO: get packet
+	Node* tnode = NodeMgr::getInstance()->getNodeByID(mevt->getNodeID());
+	IMLPacket* imlpkt = (IMLPacket*)tnode->sendPacket(Packet::PACKET_IML);
 
+	// TODO: find nodes which can recv the message, call thier recvPacket function
+	NodeMgr::getInstance()->broadcastPacket(imlpkt);
 }
 
 }

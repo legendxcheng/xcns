@@ -3,7 +3,7 @@
 #include "Overseer.h"
 #include "LSPacket.h"
 #include "IMLPacket.h"
-
+#include "NodeEvent.h"
 
 namespace XCNS
 {
@@ -26,11 +26,33 @@ namespace XCNS
 
 	void TailNode::recvPacket(Packet* pkt)
 	{
+		if (m_sleeping || m_disabled) 
+			return;
 
+		switch (pkt->getType())
+		{
+		case Packet::PACKET_LS:
+			// Absolutly the ls must be sent from front nodes.
+
+			// Insert a sleep event
+			NodeEvent* nevt = new NodeEvent(Event::EVENT_NODE_SLEEP);
+			nevt->setTimeStamp(Overseer::getInstance()->getTime());
+			nevt->setNodeID(m_id);
+			Overseer::getInstance()->addEvent(nevt);
+
+			// Insert a wakeUP event
+			nevt = new NodeEvent(Event::EVENT_NODE_WAKEUP);
+			nevt->setTimeStamp(Overseer::getInstance()->getTime() + m_sleepTime);
+			nevt->setNodeID(m_id);
+			Overseer::getInstance()->addEvent(nevt);
+			break;
+		}
 	}
 
 	Packet* TailNode::sendPacket(int packetType)
 	{
+		if (m_sleeping || m_disabled)
+			return NULL;
 		switch(packetType)
 		{
 		case Packet::PACKET_LS:

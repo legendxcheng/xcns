@@ -36,7 +36,7 @@ Node::~Node(void)
 
 void Node::wakeUp()
 {
-
+	m_minIML = 10000; //
 	m_sleeping = false;
 }
 
@@ -75,6 +75,8 @@ void Node::mergeNodeStates(char* src, char* des)
 void Node::resetNodeStates()
 {
 	memset(m_nodeStates, 0, sizeof(char) * 50);// set all as unknown
+	// set self as alive
+	setNodeAlive(m_id);
 }
 
 void Node::setNodeAlive(int nodeID)
@@ -154,4 +156,8 @@ bool Node::nodeStateComplete()
 	}
 	return true;
 }
+
+
+
+
 }

@@ -14,6 +14,7 @@ namespace XCNS
 		int m_LSgap;
 		int m_timeBeforeJudgingDeath;
 		int m_timeBeforeSleep;
+		int m_sleepTime;
 
 	public:
 		NormalNode(void);
@@ -22,6 +23,8 @@ namespace XCNS
 		virtual void transit(std::string toState);
 		virtual void recvPacket(Packet* pkt);
 		virtual Packet* sendPacket(int packetType);
+		virtual void wakeUp();
+		virtual void sleep();
 	};
 
 }

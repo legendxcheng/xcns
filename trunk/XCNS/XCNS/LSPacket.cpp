@@ -14,6 +14,11 @@ LSPacket::~LSPacket(void)
 {
 }
 
+char* LSPacket::getNodeState()
+{
+	return m_nodeState;
+}
+
 void LSPacket::setNodeState(char* src)
 {
 	memcpy(m_nodeState, src, sizeof(char) * 50);
