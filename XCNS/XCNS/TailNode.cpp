@@ -20,6 +20,8 @@ namespace XCNS
 
 	void TailNode::wakeUp()
 	{
+		m_lastLSFromMinIMLTime = -1;
+		m_lastRecvTime = -1;
 		// Enter Q1.
 		transit("Q1");
 	}

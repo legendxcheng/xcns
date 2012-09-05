@@ -83,6 +83,8 @@ void ConfigReader::ReadConfig()
 
 	Logger* logger = Logger::getInstance();
 	logger->setVerbosity(ovsr->m_logVerbosity);
+
+
 }
 
 }
