@@ -67,6 +67,8 @@ public:
 	virtual Packet* sendPacket(int packetType) = 0;
 	virtual void transit(std::string toStage) = 0;// FSM transition
 
+	bool isSleeping();
+	bool isDisalbed();
 	bool nodeStateComplete();
 	void resetNodeStates();
 	void copyNodeStates(char* src, char* des);

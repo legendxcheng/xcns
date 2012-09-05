@@ -78,6 +78,7 @@ void Overseer::handleEvent(Event* evt)
 	switch(evt->getType())
 	{
 	case Event::EVENT_GLOBAL_SIMEND:
+		m_simulationEnded = true;
 		logger->addLog(1, "Simulation ends.");
 		break;
 	case Event::EVENT_GLOBAL_SIMSTART:
@@ -127,7 +128,8 @@ int Overseer::getCarriageNum()
 */
 void Overseer::simulate()
 {
-	while (!m_evq.empty())
+	m_simulationEnded = false;
+	while (!m_evq.empty() && !m_simulationEnded)
 	{
 		Event* evt = m_evq.top();
 
@@ -163,7 +165,7 @@ void Overseer::nodeSleepHandler(Event* evt)
 	sprintf(logStr, "node %d sleeps.", nevt->getNodeID());
 	Logger::getInstance()->addLog(1, logStr);
 	// Logic.
-	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->wakeUp();
+	NodeMgr::getInstance()->getNodeByID(nevt->getNodeID())->sleep();
 
 }
 void Overseer::nodeFSMHandler(Event* evt)
@@ -214,16 +216,20 @@ void Overseer::ACKMsgHandler(Event* evt)
 void Overseer::LSMsgHandler(Event* evt)
 {
 	MessageEvent* mevt = (MessageEvent*)evt;
-	// Add logs.
-	char logStr[300];
-	sprintf(logStr, "node %d broadcasts LS message.", mevt->getNodeID());
-	Logger::getInstance()->addLog(1, logStr);
+
 	// Logic
 	// TODO: get packet
 	Node* tnode = NodeMgr::getInstance()->getNodeByID(mevt->getNodeID());
 	LSPacket* lspkt = (LSPacket*)tnode->sendPacket(Packet::PACKET_LS);
 	// TODO: find nodes which can recv the message, call thier recvPacket function
-	NodeMgr::getInstance()->broadcastPacket(lspkt);
+	if (lspkt) // if no packet return, then the node must be sleeping or disabled
+	{
+		NodeMgr::getInstance()->broadcastPacket(lspkt);
+		// Add logs.
+		char logStr[300];
+		sprintf(logStr, "node %d broadcasts LS message.", mevt->getNodeID());
+		Logger::getInstance()->addLog(1, logStr);
+	}
 
 }
 void Overseer::IMLMsgHandler(Event* evt)

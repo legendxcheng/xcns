@@ -3,7 +3,7 @@
 #include "NormalNode.h"
 #include "HeadNode.h"
 #include "Packet.h"
-
+#include "Logger.h"
 namespace XCNS
 {
 
@@ -104,7 +104,25 @@ void NodeMgr::broadcastPacket(Packet* pkt)
 		if (canReceiveSignal(abs(snode->getPosition() - rnode->getPosition()), snode->getFrequency(), snode->getPower(), 
 			rnode->getRecvThreshold()))
 		{
-			rnode->recvPacket(pkt);
+			std::string pkttp;
+			switch (pkt->getType())
+			{
+			case Packet::PACKET_IML:
+				pkttp = "IML";
+				break;
+			case Packet::PACKET_LS:
+				pkttp = "LS";
+				break;
+			}
+	
+			if (!(rnode->isDisalbed() || rnode->isSleeping()))
+			{
+				char logStr[300];
+				sprintf(logStr, "node %d receives %s packet from node %d.", rnode->getID(), pkttp.c_str(), snode->getID());
+				Logger::getInstance()->addLog(2, logStr);
+				rnode->recvPacket(pkt);
+
+			}
 		}
 	}
 }

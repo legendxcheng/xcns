@@ -31,6 +31,7 @@ namespace XCNS
 		void simulate();
 		~Overseer(void);
 	private:
+		bool m_simulationEnded;
 		void handleEvent(Event* evt);
 		static Overseer* m_instance;
 		Overseer(void);

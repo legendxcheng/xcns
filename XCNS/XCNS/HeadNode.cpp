@@ -5,6 +5,7 @@
 #include "NodeEvent.h"
 #include "Overseer.h"
 #include "MessageEvent.h"
+#include "Logger.h"
 namespace XCNS
 {
 
@@ -20,12 +21,19 @@ namespace XCNS
 
 	void HeadNode::sleep()
 	{
-
+		m_sleeping = true;
+		// add a wake up event
+		NodeEvent* mevt = new NodeEvent(Event::EVENT_NODE_WAKEUP);
+		mevt->setTimeStamp(Overseer::getInstance()->getTime() + m_sleepTime);
+		mevt->setNodeID(m_id);
+		Overseer::getInstance()->addEvent(mevt);
 	}
 
 	void HeadNode::wakeUp()
 	{
 		// Transit to Q1
+		m_sleeping = false;
+		m_minIML = 10000;
 		transit("Q1");
 		resetNodeStates();
 	}
@@ -34,6 +42,8 @@ namespace XCNS
 	{
 		if (m_sleeping || m_disabled) 
 			return;
+
+		m_lastRecvTime = Overseer::getInstance()->getTime();
 
 		switch (pkt->getType())
 		{
@@ -73,7 +83,7 @@ namespace XCNS
 			}
 			else if (m_state.compare("Q2") == 0)
 			{
-				m_lastRecvTime = Overseer::getInstance()->getTime();
+				
 			}
 			// If ls is from front nodes, the packet acts as ACK
 			// else if ls is from previous node, update nodestates
@@ -128,7 +138,11 @@ namespace XCNS
 		case Packet::PACKET_LS:
 			if (m_state.compare("Q2") == 0)
 			{
-				if (Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep)
+				LSPacket* lspkt = new LSPacket();
+				lspkt->setSenderID(m_id);
+				lspkt->setNodeState(m_nodeStates);
+
+				if (m_lastRecvTime >= 0 && Overseer::getInstance()->getTime() - m_lastRecvTime > m_timeBeforeSleep)
 				{
 					transit("Q0");
 				}
@@ -140,6 +154,7 @@ namespace XCNS
 					// the info tells that this node has to send an ls message
 					Overseer::getInstance()->addEvent(mevt);
 				}
+				return lspkt;
 			}
 			return NULL;
 			break;
@@ -149,8 +164,11 @@ namespace XCNS
 
 	void HeadNode::transit(std::string toState)
 	{
+		char logStr[300];
+		sprintf(logStr, "node %d transit from state_%s to state_%s.", m_id, m_state.c_str(), toState.c_str());
+		Logger::getInstance()->addLog(4, logStr);
 		m_state = toState;
-
+		
 		// Do logic.
 		// current state is Q1
 		if (toState.compare("Q1") == 0)
@@ -162,6 +180,14 @@ namespace XCNS
 			// Every m_LSgap sends an LS.
 			// Create an event
 			MessageEvent* mevt = new MessageEvent(Event::EVENT_MESSAGE_LS);
+			mevt->setNodeID(m_id);
+			mevt->setTimeStamp(Overseer::getInstance()->getTime());
+			// the info tells that this node has to send an ls message
+			Overseer::getInstance()->addEvent(mevt);
+		}
+		else if (toState.compare("Q0") == 0)
+		{
+			NodeEvent* mevt = new NodeEvent(Event::EVENT_NODE_SLEEP);
 			mevt->setNodeID(m_id);
 			mevt->setTimeStamp(Overseer::getInstance()->getTime());
 			// the info tells that this node has to send an ls message
