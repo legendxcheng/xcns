@@ -114,7 +114,7 @@ bool NodeMgr::canReceiveSignal( double distance, double frequency, double sendin
 {
 	double receivingPower = 0;
 	receivingPower = 1000000 * sendingPower / ( 1753.88 * distance * distance * frequency * frequency );
-	if (receivingPower < threshold)
+	if (1000 * receivingPower < threshold)
 	{
 		return false;
 	}

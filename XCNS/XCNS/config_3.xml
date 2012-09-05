@@ -6,7 +6,7 @@
 		200
 	</nodePower>
 	<recvThreshold>
-		0.002
+		2
 	</recvThreshold>
 	<nodeDelayOfHandlingMessage>
 		100
