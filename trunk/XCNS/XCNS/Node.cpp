@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Logger.h"
 #include "Overseer.h"
 namespace XCNS
 {
@@ -174,7 +175,30 @@ bool Node::nodeStateComplete()
 	return true;
 }
 
+void Node::printStatistics()
+{
+	Logger* logger = Logger::getInstance();
+	char logStr[300];
 
+	if (m_disabled)
+	{
+		sprintf(logStr, "Node %d is dead.", m_id);
+		Logger::getInstance()->addLogNoTime(1, logStr);
+
+	}
+	else
+	{
+		sprintf(logStr, "Node %d statistics:", m_id);
+		Logger::getInstance()->addLogNoTime(1, logStr);
+		sprintf(logStr, "	Packets sent: %d", m_sendCount);
+		Logger::getInstance()->addLogNoTime(1, logStr);
+		sprintf(logStr, "	Packets recv: %d", m_recvCount);
+		Logger::getInstance()->addLogNoTime(1, logStr);
+
+	}
+
+	
+}
 
 
 }

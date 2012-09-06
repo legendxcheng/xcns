@@ -30,10 +30,16 @@ namespace XCNS
 		mevt->setTimeStamp(Overseer::getInstance()->getTime() + m_sleepTime);
 		mevt->setNodeID(m_id);
 		Overseer::getInstance()->addEvent(mevt);
+		// EXIT
+		Overseer::getInstance()->stopSimulation();
 	}
 
 	void HeadNode::wakeUp()
 	{
+		// reset statistics
+		m_sendCount = 0;
+		m_recvCount = 0;
+
 		// Transit to Q1
 		m_sleeping = false;
 		m_minIML = 10000;

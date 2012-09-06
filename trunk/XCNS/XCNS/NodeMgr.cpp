@@ -36,6 +36,13 @@ Node* NodeMgr::getNodeByID(int id)
 	return NULL;
 }
 
+void NodeMgr::printStatistics()
+{
+	for (int i = 1; i < m_nodes.size(); ++i)
+	{
+		m_nodes[i]->printStatistics();
+	}
+}
 
 /*
 	Get number of nodes.
@@ -106,9 +113,9 @@ void NodeMgr::initialize()
 
 		m_nodes.push_back(newNode);
 	}
-	disableNode(9);
+
 	disableNode(5);
-	disableNode(2);
+
 	NormalNode* tailNode = (NormalNode*)m_nodes[ovsr->m_carriageNum];
 	tailNode->setAsTailNode();
 }
@@ -124,6 +131,10 @@ void NodeMgr::broadcastPacket(Packet* pkt)
 		if (canReceiveSignal(abs(snode->getPosition() - rnode->getPosition()), snode->getFrequency(), snode->getPower(), 
 			rnode->getRecvThreshold()))
 		{
+			// packets maybe crushed
+			if (Overseer::getInstance()->getDropRate() > rand()%100)
+				continue;
+
 			std::string pkttp;
 			switch (pkt->getType())
 			{

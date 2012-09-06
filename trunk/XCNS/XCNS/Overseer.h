@@ -29,6 +29,7 @@ namespace XCNS
 		unsigned int getTime();
 		static Overseer* getInstance();
 		void simulate();
+		void printStatistics();
 		~Overseer(void);
 	private:
 		bool m_simulationEnded;
@@ -57,8 +58,11 @@ namespace XCNS
 		int m_timeBeforeSleep;
 		int m_dropRate;
 		int m_nodeFreq;
+		
 	// Getter
 	public:
+		int getDropRate();
+		void stopSimulation();
 		int getCarriageNum();
 	// Event handlers
 	private:

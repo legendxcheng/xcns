@@ -27,19 +27,19 @@
 		1
 	</logVerbosity>
 	<IMLgap>
-		1000
+		100
 	</IMLgap>
 	<ACKgap>
-		1000
+		100
 	</ACKgap>
 	<LSgap>
-		1000
+		100
 	</LSgap>
 	<timeBeforeJudgingDeath>
-		50000
+		5000
 	</timeBeforeJudgingDeath>
 	<timeBeforeSleep>
-		50000
+		5000
 	</timeBeforeSleep>
 	<dropRate>
 		1

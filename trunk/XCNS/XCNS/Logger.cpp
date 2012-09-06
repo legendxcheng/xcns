@@ -32,6 +32,21 @@ namespace XCNS
 		
 	}
 
+	void Logger::addLogNoTime(int verbo, std::string logStr)
+	{
+		if (verbo <= m_verbosity)
+		{
+			std::string polishedStr;
+			char ss[300];
+			memset(ss, 0, sizeof(char) * 300);
+			unsigned int curTime = Overseer::getInstance()->getTime();
+			sprintf(ss, "%s\n", logStr.c_str());
+			fprintf(m_logFile, ss);
+			OutputDebugString(ss);
+		}
+
+	}
+
 	void Logger::setVerbosity(int verbo)
 	{
 		m_verbosity = verbo;

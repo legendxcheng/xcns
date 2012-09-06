@@ -32,6 +32,7 @@ public:
 	void broadcastPacket(Packet* pkt);
 	void disableNode(int nodeID);
 	void enableNode(int nodeID);
+	void printStatistics();
 };
 }
 
