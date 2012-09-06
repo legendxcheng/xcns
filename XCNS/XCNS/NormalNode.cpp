@@ -24,6 +24,10 @@ namespace XCNS
 	{
 		if (m_disabled)
 			return;
+
+		m_sendCount = 0;
+		m_recvCount = 0;
+
 		m_lastLSFromMinIMLTime = -1;
 		m_lastRecvTime = -1;
 		m_minIML = 10000;
@@ -47,6 +51,7 @@ namespace XCNS
 
 	void NormalNode::recvPacket(Packet* pkt)
 	{
+		++m_recvCount;
 		if (m_sleeping || m_disabled)
 			return;
 
@@ -140,6 +145,7 @@ namespace XCNS
 
 	Packet* NormalNode::sendPacket(int packetType)
 	{
+		++m_sendCount;
 		if (m_sleeping || m_disabled)
 			return NULL;
 		switch (packetType)

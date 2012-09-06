@@ -232,6 +232,12 @@ void Overseer::LSMsgHandler(Event* evt)
 	}
 
 }
+
+int Overseer::getDropRate()
+{
+	return m_dropRate;
+}
+
 void Overseer::IMLMsgHandler(Event* evt)
 {
 	MessageEvent* mevt = (MessageEvent*)evt;
@@ -248,6 +254,16 @@ void Overseer::IMLMsgHandler(Event* evt)
 	// TODO: find nodes which can recv the message, call thier recvPacket function
 	if (imlpkt)
 		NodeMgr::getInstance()->broadcastPacket(imlpkt);
+}
+
+void Overseer::printStatistics()
+{
+	NodeMgr::getInstance()->printStatistics();
+}
+
+void Overseer::stopSimulation()
+{
+	m_simulationEnded = true;
 }
 
 }

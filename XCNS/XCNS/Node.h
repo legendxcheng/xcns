@@ -77,6 +77,12 @@ public:
 	void setNodeAlive(int nodeID);
 	void setNodeDead(int nodeID);
 	void enable(bool able);
+	void printStatistics();
+// statistics
+protected:
+	int m_sendCount;
+	int m_recvCount;
+
 };
 
 }
